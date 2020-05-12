@@ -1,3 +1,4 @@
+library("matrixStats")
 library("lattice")
 library("reshape")
 library("psych")
@@ -71,6 +72,39 @@ for (m in seq_along(ks)) {
          main = "Posterior Marginals", pch = 18))
   dev.off()
 
+  ## Marginal plot v2
+  
+  cairo_pdf(respath("marginals2.pdf"), width=6, height = 8.8, family="DejaVu Sans")
+  parM2 = parM[nburnin:nrow(parM),c("q_obs.12","q_obs.13","q_obs.14","q_obs.15","q_obs.16",
+                                    "q_obs.23","q_obs.24","q_obs.25","q_obs.26",
+                                    "q_obs.34","q_obs.35","q_obs.36",
+                                    "q_obs.45","q_obs.46",
+                                    "q_obs.56",
+                                    "q_hid.A", "lambda_hid.A", "lambda_hid.B.",
+                                    "lambda_obs.1",  "lambda_obs.2",
+                                    "lambda_obs.3",  "lambda_obs.4",
+                                    "lambda_obs.5",  "lambda_obs.6")]
+  names(parM2) = c("q: Africa<->Asia","q: Africa<->Europe","q: Africa<->N.Amer","q: Africa<->Oceania","q: Africa<->S.Amer",
+                   "q: Asia<->Europe","q: Asia<->N.Amer","q: Asia<->Oceania","q: Asia<->S.Amer",
+                   "q: Europe<->N.Amer","q: Europe<->Oceania","q: Europe<->S.Amer",
+                   "q: N.Amer<->Oceania","q: N.Amer<->S.Amer",
+                   "q: Oceania<->S.Amer",
+                   "q: hidden state", "λ: hidden state A", "λ: hidden state B",
+                   "λ: Africa","λ: Asia", "λ: Europe","λ: N.Amer", "λ: Oceania","λ: S.Amer")
+  mp2dat = melt((parMmp2 = parM2))
+  print(bwplot(variable ~ value, data=mp2dat,
+         panel = function(x, y, ...){
+           panel.bwplot(x, y, ...)
+           panel.text(x=colMeans(parMmp2),
+                      y=1:ncol(parMmp2)+0.44, labels=sprintf("%.03f",colMeans(parMmp2)), cex=0.5)
+           panel.lines(x=c(-1,3), y=c(16.65,16.65), col="black", lty=3)
+         },
+         par.settings = list(box.rectangle = list(col="black"),
+                             box.umbrella = list(col="black"),
+                             plot.symbol = list(col="black", pch = 20)),
+         main = "Posterior Marginals", pch = 20, col=1, do.out=F, cex=0.5, xlab = ""))
+  dev.off()
+
   ## BIC score
   mapidx = which.max(chain$Posterior)
   bic = k*log(3585) -2*chain$Posterior[mapidx]
@@ -78,9 +112,9 @@ for (m in seq_along(ks)) {
   cat(sprintf("%.03f\n", bic))
   sink()
 
-  ## (Pseudo?) Bayes factor
   sink(respath("bayesfactor.txt"))
-  cat(sprintf("%.03f\n", mean(chain$Posterior[nburnin:length(chain$Posterior)])))
+  bayesfac = log(nrow(chain) - nburnin) - logSumExp(-chain$Likelihood[nburnin:nrow(chain)])
+  cat(sprintf("%.03f\n", bayesfac))
   sink()
 
   ## Plot Lambda's

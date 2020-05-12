@@ -1,7 +1,9 @@
-library(plotrix)
-library(phytools)
-library(RColorBrewer)
-library(RevGadgets)
+suppressPackageStartupMessages({
+  library(plotrix)
+  library(phytools)
+  library(RColorBrewer)
+  library(RevGadgets)
+})
 
 mods = c("CORRECT", "LAMBSAME", "QPAIR", "LAMBSAMEQPAIR", "QEQ", "ALLEQ")
 
