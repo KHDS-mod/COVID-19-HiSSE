@@ -1,5 +1,5 @@
 options(width = 160)
-paths = sapply(c(CORRECT="CORRECT", LAMBSAME="LAMBSAME", QPAIR="QPAIR",
+paths = sapply(c(FULL="FULL", LAMBSAME="LAMBSAME", QPAIR="QPAIR",
                  LAMBSAMEQPAIR="LAMBSAMEQPAIR", QEQ="QEQ", ALLEQ="ALLEQ"),
                function (x) {
                  function(y) {

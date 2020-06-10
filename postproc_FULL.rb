@@ -1,4 +1,4 @@
-resdir                 = "RES_HISSE_ST6NOULTRA_CORRECT_1"
+resdir                 = "RES_HISSE_ST6NOULTRA_FULL_1"
 burnin                 = 5
 n_time_slices          = 100
 

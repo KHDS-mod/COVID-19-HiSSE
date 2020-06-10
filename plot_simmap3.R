@@ -5,7 +5,7 @@ suppressPackageStartupMessages({
 })
 
 
-mods = c("CORRECT", "LAMBSAME", "QPAIR", "LAMBSAMEQPAIR", "QEQ", "ALLEQ")
+mods = c("FULL", "LAMBSAME", "QPAIR", "LAMBSAMEQPAIR", "QEQ", "ALLEQ")
 
 for (m in mods) {
   respath = function (x) sprintf("RES_HISSE_ST6NOULTRA_%s_1/%s", m, x)

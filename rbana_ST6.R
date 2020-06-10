@@ -5,7 +5,7 @@ library("psych")
 
 ## Number of parameters:
 ##          lambda_hid    lambda_obs      q_hid      q_obs        total
-## CORRECT:          1             6          1         30           38
+## FULL:             1             6          1         30           38
 ## LAMBSAME:         1             1          1         30           33
 ## QPAIR:            1             6          1         15           23
 ## LAMBSAMEQPAIR:    1             1          1         15           18
@@ -13,7 +13,7 @@ library("psych")
 ## ALLEQ:            1             1          1          1            4
 
 ks      = c(       38,         33,      23,              18,     9,       4)
-resdirs = c("CORRECT", "LAMBSAME", "QPAIR", "LAMBSAMEQPAIR", "QEQ", "ALLEQ")
+resdirs = c("FULL", "LAMBSAME", "QPAIR", "LAMBSAMEQPAIR", "QEQ", "ALLEQ")
 
 for (m in seq_along(ks)) {
   k = ks[m]; 

@@ -66,7 +66,7 @@ timetree.clampCharData(st_exp)
 mymodel = model(q)
 
 ### set up the monitors that will output parameter values to file and screen 
-monitors.append( mnModel(filename="RES_HISSE_ST6NOULTRA_CORRECT_1/model.log", printgen=1) )
+monitors.append( mnModel(filename="RES_HISSE_ST6NOULTRA_FULL_1/model.log", printgen=1) )
 # monitors.append( mnJointConditionalAncestralState(tree=timetree,
 # 						   cdbdp=timetree,
 # 						   type="NaturalNumbers",
@@ -76,7 +76,7 @@ monitors.append( mnModel(filename="RES_HISSE_ST6NOULTRA_CORRECT_1/model.log", pr
 # 						   filename="RES_HISSE_1/ancst.log") )
 monitors.append( mnStochasticCharacterMap(cdbdp=timetree,
 					  printgen=1,
-					  filename="RES_HISSE_ST6NOULTRA_CORRECT_1/stoch_char_map.log",
+					  filename="RES_HISSE_ST6NOULTRA_FULL_1/stoch_char_map.log",
 					  include_simmap=true) )
 monitors.append( mnScreen(printgen=1, lambda_obs, lambda_hid, q_obs, q_hid) )
 mymcmc = mcmc(mymodel, monitors, moves, nruns=1, moveschedule="random", combine="mixed")
