@@ -1,4 +1,4 @@
-# HiSSE Model for the geographical spread of SARS-CoV-2 
+# HiSSE model for the geographical spread of SARS-CoV-2 
 
 This repository contains code for fitting hidden state multistate speciation and extionsion (HiSSE) model using the SARS-CoV-2 genomes associated with the country of which they originate.
 
@@ -26,7 +26,7 @@ R --vanilla < preprocess_ST6NONULTRA.R
 Now the new pre-processed, cleaned, oven-ready data is stored in `ALL_CLEANED_DAT_ST6NOULTR`. In this folder is the version of the data that the MCMC estimation script will read.
 
 
-## Running the Bayesian MCMC Estimation
+## Running the Bayesian MCMC estimation
 
 There are six models, which corresponds to six `.rb` files. For example, to run the `ALLEQ`, please use
 
