@@ -44,7 +44,7 @@ mkdir ALL_CLEANED_DAT_ST6NOULTRA
 R --vanilla < preprocess_ST6NONULTRA.R
 ```
 
-Now the new pre-processed, cleaned, oven-ready data is stored in `ALL_CLEANED_DAT_ST6NOULTR`. In this folder is the version of the data that the MCMC estimation script will read.
+Now the new pre-processed, cleaned, oven-ready data is stored in `ALL_CLEANED_DAT_ST6NOULTRA`. In this folder is the version of the data that the MCMC estimation script will read.
 
 
 ## Running the Bayesian MCMC estimation
