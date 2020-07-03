@@ -49,13 +49,13 @@ Now the new pre-processed, cleaned, oven-ready data is stored in `ALL_CLEANED_DA
 
 ## Running the Bayesian MCMC estimation
 
-There are six models, which corresponds to six `.rb` files. For example, to run the `ALLEQ`, please use
+There are six models, which correspond to six `.rb` files. For example, to run the `ALLEQ` model, please use
 
 ```
 rb-mpi covid19-genome-hisse-ALLEQ.rb
 ```
 
-After this finished or the user use `Ctrl-C` to interrupt, the main MCMC result will be stored at `RES_HISSE_ST6NOULTRA_ALLEQ_1/model.log`, which is a CSV file.
+After this finished or interrupted by `Ctrl-C`, the main MCMC result will be stored at `RES_HISSE_ST6NOULTRA_ALLEQ_1/model.log`, which is a CSV file.
 
 ## Plotting
 
