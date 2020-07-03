@@ -1,4 +1,4 @@
-# SCRIPTS-NOT_FINAL
+# AIRPAX
 AirPax: directory containing data and scripts for comparing estimated rates and intra- and intercontinental airline passenger travel proportions. 
 
 Contents of AirPax
