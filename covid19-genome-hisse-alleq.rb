@@ -1,4 +1,5 @@
 ## Scenario 4.
+seed(05432680)
 
 NUM_TOTAL_SPECIES     = 3585
 NUM_STATES            = 6
@@ -22,7 +23,6 @@ monitors              = VectorMonitors()
 sig0                  ~ dnExponential( 1.0 / H )
 moves.append( mvScale(sig0, lambda=1, tune=true, weight=2.0) )
 
-### What are these...
 lambda_hid_unorm := fnDiscretizeDistribution(dnLognormal(ln(1.0), sig0), NUM_HIDDEN)
 lambda_hid := lambda_hid_unorm / mean(lambda_hid_unorm)
 

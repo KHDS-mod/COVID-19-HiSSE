@@ -1,4 +1,4 @@
-## Scenario 2
+seed(05432680)
 
 NUM_TOTAL_SPECIES     = 3585
 NUM_STATES            = 6
