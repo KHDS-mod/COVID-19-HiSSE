@@ -1,5 +1,4 @@
-## Scenario 4.
-seed(05432680)
+printSeed()
 
 NUM_TOTAL_SPECIES     = 3585
 NUM_STATES            = 6
