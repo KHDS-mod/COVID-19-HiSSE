@@ -1,0 +1,77 @@
+[1] "Pearson, all data"
+
+	Pearson's product-moment correlation
+
+data:  mQLPAX[, 1] and mQLPAX[, 2]
+t = 4.1589, df = 19, p-value = 0.0005331
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.3684082 0.8644059
+sample estimates:
+      cor 
+0.6903102 
+
+[1] "======================="
+[1] "Pearson, transition rates"
+
+	Pearson's product-moment correlation
+
+data:  mQLPAX[1:15, 1] and mQLPAX[1:15, 2]
+t = 2.2339, df = 13, p-value = 0.04368
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.01975025 0.81819703
+sample estimates:
+      cor 
+0.5266845 
+
+[1] "======================="
+[1] "Pearson, diversification rates"
+
+	Pearson's product-moment correlation
+
+data:  mQLPAX[16:21, 1] and mQLPAX[16:21, 2]
+t = 2.9048, df = 4, p-value = 0.0439
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.0364740 0.9800831
+sample estimates:
+      cor 
+0.8236544 
+
+[1] "======================="
+[1] "Kendall, all rates"
+
+	Kendall's rank correlation tau
+
+data:  mQLPAX[, 1] and mQLPAX[, 2]
+T = 154, p-value = 0.002611
+alternative hypothesis: true tau is not equal to 0
+sample estimates:
+      tau 
+0.4666667 
+
+[1] "======================="
+[1] "Kendall, transition rates"
+
+	Kendall's rank correlation tau
+
+data:  mQLPAX[1:15, 1] and mQLPAX[1:15, 2]
+T = 74, p-value = 0.0359
+alternative hypothesis: true tau is not equal to 0
+sample estimates:
+      tau 
+0.4095238 
+
+[1] "======================="
+[1] "Kendall, diversification rates"
+
+	Kendall's rank correlation tau
+
+data:  mQLPAX[16:21, 1] and mQLPAX[16:21, 2]
+T = 12, p-value = 0.1361
+alternative hypothesis: true tau is not equal to 0
+sample estimates:
+tau 
+0.6 
+
