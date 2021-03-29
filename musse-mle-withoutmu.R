@@ -36,7 +36,7 @@ mle = function (tr, init = NULL) {
 
   cnt = 1
   init = starting.point.musse(tr, nstates)[-(((nstates+1):(2*nstates)))]
-  npar = length(init) - nstates
+  npar = length(init)
   init = runif(npar, min=0, max=1.5)
   r = Rcgmin(log(init),
           function (x) {
