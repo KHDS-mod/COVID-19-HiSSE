@@ -84,8 +84,8 @@ mle = function (tr, add_constraints, init = NULL) {
             y = exp(x)
             if (all(is.finite(y))) {
                 tryCatch({
-                    l = likobj(exp(x));
-                    if (cnt %% 800 == 0) print(c(lik = l, cnt = cnt, exp(x)))
+                    l = likobj(y);
+                    if (cnt %% 800 == 0) print(c(lik = l, cnt = cnt, y))
                     cnt <<- cnt+1
                     -l
                 }, error= function (e,...) {return(NA);});

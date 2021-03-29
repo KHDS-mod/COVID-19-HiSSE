@@ -41,10 +41,11 @@ mle = function (tr, init = NULL) {
   r = Rcgmin(log(init),
           function (x) {
             y = exp(x)
+            y = c(y[1:nstates], rep(0,nstates),y[(nstates+1):(length(y))])
             if (all(is.finite(y))) {
                 tryCatch({
-                    l = likobj(exp(x));
-                    if (cnt %% 800 == 0) print(c(lik = l, cnt = cnt, exp(x)))
+                    l = likobj(y);
+                    if (cnt %% 800 == 0) print(c(lik = l, cnt = cnt, y))
                     cnt <<- cnt+1
                     -l
                 }, error= function (e,...) {return(NA);});
