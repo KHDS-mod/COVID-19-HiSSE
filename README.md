@@ -28,9 +28,9 @@ probably in a form of splitted zip files.
 
 ## Requirements
 
-1. [RevBayes >= 1.0.12](https://revbayes.github.io)
-2. [GNU R](https://www.r-project.org) or [pqR](http://www.pqr-project.org)
-3. Various R packages
+1. [RevBayes == 1.0.12](https://revbayes.github.io)
+2. [GNU R](https://www.r-project.org)
+3. Some CRAN packages (see source code)
 4. ksh93, which is available in almost all Linux distros package managers.
 
 ## Data
