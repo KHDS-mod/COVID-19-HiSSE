@@ -7,7 +7,7 @@ suppressPackageStartupMessages({
   library("diversitree")
 })
 source("utils.R")
-tr = read.tree("RAW_DATA/nextstrain_ncov_global_timetree.nwk")
+tr = read.tree("RAW_PHYLOGENY/nextstrain_ncov_global_timetree.nwk")
 tr$edge.length = tr$edge.length * 365/30
 trd = tiprootdist(tr)
 tr = multi2di(tr, random=F)
@@ -15,7 +15,7 @@ tr = multi2di(tr, random=F)
 tr$edge.length[which(tr$edge.length <= 0)] = d2e(1/24) * 365/30
 
 tru = collapse.singles(tr)
-st = read.csv2("RAW_DATA/tips_26042020.csv")
+st = read.csv2("RAW_PHYLOGENY/tips_26042020.csv")
 stord = sort(as.character(unique(st$Region)))
 tru$tip.state = sapply(st$Region, function (x) which(stord == x))
 names(tru$tip.state) = tru$tip.label
