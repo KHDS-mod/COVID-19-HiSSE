@@ -5,7 +5,7 @@ This repository contains code for fitting hidden state multistate speciation and
 
 ## Reading the source files
 
-If you are a statistician and you are only interested in reading the code for the actual model, please see the six `*.rb` files for the HiSSE model. They are RevBayes model files (similar to Stan, JAGS files) which contains the formulas for the prior and likelihood. For the MuSSE model, please see `full-tree-est.R` (MLE), `full-tree-boot.R` (bootstrap) and `full-tree-bootanalys.R` (computing CI out of the bootstarp results). Other files are mostly plotting scripts. `preprocess_ST6NONULTRA.R` contains all pre-processing code from the raw Next Strain data.
+If you are a statistician and you are only interested in reading the code for the actual model, please see the six `*.rb` files for the HiSSE model. They are RevBayes model files (similar to Stan, JAGS files) which contains the formulas for the prior and likelihood. The `mpp-*.ksh` scripts are used for submitting the RebBayes programs to a Slurm job queue for high-performance computation; you don't need them if you don't use Slurm workload manager. `run_me_to_plot_MCMC.ksh` is a simple ksh script which calls `plotMC.R` with the correct file names, so you may want to read the latter to see how graphs are plotted. `plotMC.R` also sources some other .R files which does the actual graph plotting and computes the BIC of each models. For the MuSSE model, which does not converge, please see `musse-mle-withmu.R`, which fits the MuSSE model with conjugate gradient optimisation. 
 
 
 ## Data Preprocessing
@@ -20,24 +20,22 @@ The following pre-processing steps are done to the phylogeny:
 
 ## Numerical results
 
-The results of running the scripts are zipped in `numerical-results.tar.xz` to
-stop Github complaining about big file size. Most importantly, the zip file
-contains `model.log`, CSV file that contains the MCMC chain, along with some
-plots and other files that RevBayes outputs, some of them are needed by the
-plotting scripts.
+The files are currently too large to upload here and it will be uploaded soon,
+probably in a form of splitted zip files.
 
 
 # How to run the experiment
 
 ## Requirements
 
-1. [RevBayes >= 1.0.12](https://revbayes.github.io)
-2. [GNU R](https://www.r-project.org) or [pqR](http://www.pqr-project.org)
-
+1. [RevBayes == 1.0.12](https://revbayes.github.io)
+2. [GNU R](https://www.r-project.org)
+3. Some CRAN packages (see source code)
+4. ksh93, which is available in almost all Linux distros package managers.
 
 ## Data
 
-The raw data from Next Strain is in `DATA_MUSSE2`. There is a pre-processing script `preprocess_ST6NONULTRA.R` which the user should run before running the MCMC estimation. This script transforms the phylogeny by re-scale the tree edges (for numerical stability), collapsing singleton internal nodes, etc. To pre-process the tree, do 
+The raw data from Next Strain is in `RAW_PHYLOGENY`. There is a pre-processing script `preprocess_ST6NONULTRA.R` which the user should run before running the MCMC estimation. This script transforms the phylogeny by re-scale the tree edges (for numerical stability), collapsing singleton internal nodes, etc. To pre-process the tree, do 
 
 ```
 mkdir ALL_CLEANED_DAT_ST6NOULTRA
@@ -49,14 +47,20 @@ Now the new pre-processed, cleaned, oven-ready data is stored in `ALL_CLEANED_DA
 
 ## Running the Bayesian MCMC estimation
 
-There are six models, which correspond to six `.rb` files. For example, to run the `ALLEQ` model, please use
+There are six models, which correspond to six `.rb` files. The `mpp-*-withmu.ksh` should illustrate directly how to run these scripts.
+As an example, to run the `ALLEQ` model, use the following bash command:
 
 ```
-rb-mpi covid19-genome-hisse-ALLEQ.rb
+    echo \
+        'chnname="01"; '   \
+        'outdir="OUTPUT_DIR"; ' \
+        'source("covid19-genome-hisse-alleq-withmu.rb")'| \
+        rb
 ```
 
-After this finished or interrupted by `Ctrl-C`, the main MCMC result will be stored at `RES_HISSE_ST6NOULTRA_ALLEQ_1/model.log`, which is a CSV file.
+Note that when we run the experiment, we assume that RevBayes was compiled with OpenMPI turnt *off*. Here we use concurrency to run multiple parallel chains rather than using RevBayes' built-in OpenMPI feature. After this has finished or interrupted by `Ctrl-C`, the main MCMC result will be stored at `OUTPUT_DIR/model01.log`, which is a CSV file despite of its file name.
+
 
 ## Plotting
 
-To plot the model, the user needs to run `postproc_*.rb`, `rbana_ST6.R` and `plot_simmap4.R` in the respective order. The plots are saved in `RES_HISSE_ST6NOULTRA_*_1/*.pdf`. Instead of `plot_simmap4.R`, you may also try other `plot_simmap*.R`; they produces similar tree plots but with different colouring.
+To plot the model, the user needs to run `postproc_*.rb`, `rbana_ST6.R` and `plot_simmap4.R` in the respective order. Instead of `plot_simmap4.R`, you may also try other `plot_simmap*.R`; they produces similar tree plots but with different colouring.
