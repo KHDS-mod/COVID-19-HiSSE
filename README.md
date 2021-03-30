@@ -1,4 +1,4 @@
-# HiSSE model for the geographical spread of SARS-CoV-2 
+# HiSSE model for the Geographical Spread of SARS-CoV-2
 
 This repository contains code for fitting hidden state multistate speciation and extionsion (HiSSE) model using the SARS-CoV-2 genomes associated with the country of which they originate.
 
@@ -63,4 +63,7 @@ Note that when we run the experiment, we assume that RevBayes was compiled with 
 
 ## Plotting
 
-To plot the model, the user needs to run `postproc_*.rb`, `rbana_ST6.R` and `plot_simmap4.R` in the respective order. Instead of `plot_simmap4.R`, you may also try other `plot_simmap*.R`; they produces similar tree plots but with different colouring.
+To plot the MCMC chain's trace plot and the marginal posterior, use the `run_me_to_plot_MCMC.ksh`. The script plots the graphs by simply
+running a for-loop which evokes `./plotMC.R` with the correct directory name. If you want to plot the estimated HiSSE states, you should
+run `./make_charmap.ksh` first (see the file for more detail).
+
