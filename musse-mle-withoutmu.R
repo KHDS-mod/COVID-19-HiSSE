@@ -33,7 +33,6 @@ mle = function (tr, init = NULL) {
   rootp = numeric(nstates)
   rootp[root_state] = 1
   likobj = set.defaults(likobj, defaults = list(root = quote(ROOT.GIVEN), root.p = rootp))
-
   cnt = 1
   init = starting.point.musse(tr, nstates)[-(((nstates+1):(2*nstates)))]
   npar = length(init)
