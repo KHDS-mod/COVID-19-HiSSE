@@ -17,7 +17,7 @@ suppressPackageStartupMessages({
 source("utils.R")
 
 respath = function (file) sprintf("RES_MUSSE_MLE_WITHMU_1/%s", file)
-datpath = function (file) sprintf("ALL_CLEANED_DAT_3/%s", file)
+datpath = function (file) sprintf("ALL_CLEANED_DAT_ULTRAMETRIC/%s", file)
 ##datpath = function (file) sprintf("ALL_CLEANED_DAT_ST6NOULTRA/%s", file)
 stord = readRDS(datpath("stord.rds"))
 tr = readRDS(datpath("tru.rds"))
