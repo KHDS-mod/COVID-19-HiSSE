@@ -20,8 +20,7 @@ The following pre-processing steps are done to the phylogeny:
 
 ## Numerical results
 
-The files are currently too large to upload here and it will be uploaded soon,
-probably in a form of splitted zip files.
+The MCMC chain data and RevBayes logs can be downloaded [here](https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/EcPaj_4NIKRKk9LWPBFOrSQBooTUe5bGY1OU7Jdq6_YYkw?e=YNdD7V).
 
 
 # How to run the experiment
