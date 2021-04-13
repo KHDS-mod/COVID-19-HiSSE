@@ -6,6 +6,26 @@ lres_pax<-f_getPaxProps(pFeb2020) ## to obtain proportions for other time use th
 mInterContinentalPaxProps<-lres_pax$Minter
 vIntraContinentalPaxProps<-lres_pax$vintra
 
+## Here we look at proportions for all time periods and the symmetricity
+lAllTimePeriods<-list(y2019=pYear2019,Jan2019=pJan2019,Feb2019=pFeb2019,Nov2019=pNov2019,Dec2019=pDec2019,Jan2020=pJan2020,Feb2020=pFeb2020)
+num_TimePeriods<-length(lAllTimePeriods)
+lAllTimePeriodsInterIntraContinentalPaxProps<-vector("list",length=num_TimePeriods)
+names(lAllTimePeriodsInterIntraContinentalPaxProps)<-names(lAllTimePeriods)
+
+for (i in 1:num_TimePeriods){
+    lAllTimePeriodsInterIntraContinentalPaxProps[[i]]<-vector("list",length=7)
+    names(lAllTimePeriodsInterIntraContinentalPaxProps[[i]])<-c("mInterContinentalPaxProps","vIntraContinentalPaxProps","mInterContinentalPaxProps_Raw","AvgMdifftM","SdMdifftM","MinMdifftM","MaxMdifftM")
+    lres_pax_tmp<-f_getPaxProps(lAllTimePeriods[[i]]) ## to obtain proportions for other time use the other stored proportion matrices: pJan2020, pDec2019, pNov2019, pYear2019
+    lAllTimePeriodsInterIntraContinentalPaxProps[[i]]$vIntraContinentalPaxProps<-lres_pax_tmp$Minter
+    lAllTimePeriodsInterIntraContinentalPaxProps[[i]]$mInterContinentalPaxProps_raw<-lres_pax_tmp$Minter_raw
+    lAllTimePeriodsInterIntraContinentalPaxProps[[i]]$mInterContinentalPaxProps<-lres_pax_tmp$vintra
+    mCFmats_cf<-f_cf_matrices(lAllTimePeriodsInterIntraContinentalPaxProps[[i]]$mInterContinentalPaxProps_raw)
+    lAllTimePeriodsInterIntraContinentalPaxProps[[i]]$AvgMdifftM<-mean(c(mCFmats_cf))
+    lAllTimePeriodsInterIntraContinentalPaxProps[[i]]$SdMdifftM<-sd(c(mCFmats_cf))
+    lAllTimePeriodsInterIntraContinentalPaxProps[[i]]$MinMdifftM<-min(c(mCFmats_cf))
+    lAllTimePeriodsInterIntraContinentalPaxProps[[i]]$MaxMdifftM<-max(c(mCFmats_cf))
+}
+## ==================================================================================
 
 
 ## MCMC samples of best found model by BIC
