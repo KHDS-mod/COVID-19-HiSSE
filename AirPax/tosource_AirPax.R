@@ -6,7 +6,7 @@ lres_pax<-f_getPaxProps(pFeb2020) ## to obtain proportions for other time use th
 mInterContinentalPaxProps<-lres_pax$Minter
 vIntraContinentalPaxProps<-lres_pax$vintra
 
-## Here we look at proportions for all time periods and the symmetricity
+## Here we look at proportions for all time periods and the symmetricity (Tab. S.2.)
 lAllTimePeriods<-list(y2019=pYear2019,Jan2019=pJan2019,Feb2019=pFeb2019,Nov2019=pNov2019,Dec2019=pDec2019,Jan2020=pJan2020,Feb2020=pFeb2020)
 num_TimePeriods<-length(lAllTimePeriods)
 lAllTimePeriodsInterIntraContinentalPaxProps<-vector("list",length=num_TimePeriods)
@@ -77,7 +77,7 @@ print("Kendall, diversification rates")
 print(cor.test(mQLPAX[16:21,1],mQLPAX[16:21,2],method="kendall"))
 sink()
 
-pdf("QLpaxProps.pdf")
+pdf("QLpaxProps.pdf") ## Fig. S.19.
 plot(mQLPAX[,c(2,1)],pch=19,xlab="passenger proportions",ylab="rate proportions",cex.lab=1.5,cex.axis=1.5,col=c(rep("blue",15),rep("red",6)),cex=1.5)
 legend("bottomright",legend=c("intercontinental/transitions","intracontinental/diversifications"),col=c("blue","red"),pch=19,bty="n",cex=1.3)
 dev.off()
