@@ -29,9 +29,11 @@ for (i in 1:num_TimePeriods){
 
 
 ## MCMC samples of best found model by BIC
-## to check for other models, one needs to change the name of the *.log file
-## all *.log files containing the posterior MCMC sample from all the considred models are in this directory
-lres_rates<-f_getRateProps("model_QPAIR.log",mInterContinentalPaxProps,burnin=40,b_diag=FALSE,b_cfmean=FALSE)
+## to check for other models, one needs to change path to the folder which contains all
+## the model01.log ... model32.log. This folders are named as RES_HISSE_ST6NOULTRA_*_WITHMU_2
+## in the ZIP file.
+lres_rates <- f_getRateProps(Sys.glob(file.path('../chain_data/RES_HISSE_ST6NOULTRA_QPAIR_WITHMU_2','model*.log')),
+                             mInterContinentalPaxProps,burnin=368,b_diag=FALSE,b_cfmean=FALSE)
 ## Transition rates proportions
 EmqProps<-lres_rates$EmProps ## Posterior mean
 mLowerQuantile95q<-lres_rates$mLowerQuantile95 ## lower 95% CI

@@ -25,10 +25,13 @@ f_getPaxProps<-function(M){
     list(Minter=Minter,vintra=vintra)
 }
 
-f_getRateProps<-function(filenameposterior,mData,burnin=40,b_diag=FALSE,b_cfmean=FALSE){
-    dfmodelpost<-read.table(filenameposterior,header=TRUE)
-    dfmodelpost<-dfmodelpost[-c(1:burnin),,drop=FALSE]
-
+f_getRateProps<-function(filenameposterior,mData,burnin=368,b_diag=FALSE,b_cfmean=FALSE){
+    filenames <- as.list(filenameposterior)
+    burnin    <- burnin * rep(1, length(filenames))
+    dfmodelpost <- do.call(rbind, mapply(function (name, B) {
+	read.table(name, header=T)[-(1:B),,drop=F]
+    }, name=filenames, B=burnin, SIMPLIFY=F))
+    
     ##chain = read.csv("model.log", sep="")
     ##nstates = 6
     dfmodelpost <- dfmodelpost[,c(
