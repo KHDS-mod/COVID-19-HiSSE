@@ -1,4 +1,8 @@
 source("getPaxRateProps.R")
+f_cf_matrices<-function(M1){
+    abs(M1-t(M1))
+}
+
 
 ## get air passenger intra- and intercontinental proportions
 load("AirPax.RData")
