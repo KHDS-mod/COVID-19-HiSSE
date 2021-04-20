@@ -24,6 +24,7 @@ suppressPackageStartupMessages({
   library(vioplot)
   library(data.table)
   library(mcmcr)
+  library(psych)
 })
 cmdargs = commandArgs(trailingOnly=TRUE)
 chnfiles= cmdargs[-(length(cmdargs)-(0:1))]
@@ -133,6 +134,7 @@ print(plttrace)
 dev.off()
 
 
+
 ##--------------- Box plot of all-chain marginal distribution
 source('boxmarginal.R')
 boxmerged = as.list(merged)[colselect[!(colselect %in% c('Posterior','sig0'))]]
@@ -140,6 +142,16 @@ names(boxmerged) = sapply(names(boxmerged), function(col) humanise_colnames(cols
 cairo_pdf(paste0(plotdir,"/",namestub,"-marginal-box.pdf"), width=16, height=12, family="DejaVu Sans")
 boxmarginal(boxmerged)
 dev.off()
+
+
+##--------------- Histogram of the diversification rates
+xlim = quantile(do.call(c, as.list(merged)[sprintf('lambda_obs[%d]',1:6)]), prob=c(.001,.999))
+cairo_pdf(paste0(plotdir,"/",namestub,"-diversification-rates-hist.pdf"), width=10, height=8)
+par(mar=c(0,0,0,0))
+multi.hist(do.call(cbind, as.list(merged)[sprintf('lambda_obs[%d]',1:6)]),
+           xlim = xlim, main = c("Lambda[Africa]", "Lambda[Asia]", "Lambda[Europe]", "Lambda[N. America]", "Lambda[Oceania]", "Lambda[S. Amer]"))
+dev.off()
+
 
 ##--------------- Compute the BIC
 bic = kdict[[namestub]]*log(3585) -2*max(merged[['Posterior']])
