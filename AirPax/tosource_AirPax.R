@@ -36,6 +36,10 @@ for (i in 1:num_TimePeriods){
 ## to check for other models, one needs to change path to the folder which contains all
 ## the model01.log ... model32.log. This folders are named as RES_HISSE_ST6NOULTRA_*_WITHMU_2
 ## in the ZIP file.
+##
+## Link to ZIP file (same as in the top level README):
+##    https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/EcPaj_4NIKRKk9LWPBFOrSQBooTUe5bGY1OU7Jdq6_YYkw?e=YNdD7V
+##
 lres_rates <- f_getRateProps(Sys.glob(file.path('../chain_data/RES_HISSE_ST6NOULTRA_QPAIR_WITHMU_2','model*.log')),
                              mInterContinentalPaxProps,burnin=368,b_diag=FALSE,b_cfmean=FALSE)
 ## Transition rates proportions
