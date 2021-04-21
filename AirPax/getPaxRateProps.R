@@ -19,10 +19,11 @@ f_getPaxProps<-function(M){
     vintra<-vintra/sum(vintra)
     diag(Minter)<-0
     
+    Minter_raw<-Minter
     Minter<-Minter+t(Minter)
     Minter[lower.tri(Minter,diag=TRUE)]<-NA
     Minter<-Minter/sum(Minter,na.rm=TRUE)
-    list(Minter=Minter,vintra=vintra)
+    list(Minter=Minter,vintra=vintra,Minter_raw=Minter_raw)
 }
 
 f_getRateProps<-function(filenameposterior,mData,burnin=368,b_diag=FALSE,b_cfmean=FALSE){
