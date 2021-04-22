@@ -11,5 +11,7 @@ tosource_AirPax.R: script to run to extract the relevant air travel and rates pr
 getPaxRateProps.R: functions to calculate posterior mean and CIs of rates, and proportions of intra- and intercontinental air passenger volumes.
 
 
+# Before running `tosource_AirPax.R`
 
+The scripts in this folder assumes that the numerical result (which contains the MCMC chain data) has already been downloaded and extracted in the correct place. Please see the top-level README for more information about downloading and extracting it.
 
