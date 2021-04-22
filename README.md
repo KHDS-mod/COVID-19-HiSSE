@@ -22,6 +22,30 @@ The following pre-processing steps are done to the phylogeny:
 
 The MCMC chain data and RevBayes logs can be downloaded [here](https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/EcPaj_4NIKRKk9LWPBFOrSQBooTUe5bGY1OU7Jdq6_YYkw?e=YNdD7V).
 
+After extracting the compressed file, this project folder should look like the following:
+
+<pre>
+COVID-19-HiSSE
+<b>├── chain_data
+    ├── RES_HISSE_ST6NOULTRA_ALLEQ_WITHMU_2
+    │   ├── model01.log
+    │   ├── model02.log
+    │   ├── model03.log
+        ...
+    ├── RES_HISSE_ST6NOULTRA_FULL_WITHMU_2
+    │   ├── model01.log
+    │   ├── model02.log
+    │   ├── model03.log
+        ...
+</b>├── ALL_CLEANED_DAT_ST6NOULTRA
+├── ALL_CLEANED_DAT_ULTRAMETRIC
+├── AirPax
+├── RAW_PHYLOGENY
+...
+...
+...
+</pre>
+
 
 # How to run the experiment
 
