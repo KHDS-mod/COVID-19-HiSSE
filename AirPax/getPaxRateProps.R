@@ -28,6 +28,7 @@ f_getPaxProps<-function(M){
 
 f_getRateProps<-function(filenameposterior,mData,burnin=368,b_diag=FALSE,b_cfmean=FALSE){
     filenames <- as.list(filenameposterior)
+    if (length(filenames) == 0) stop('MCMC chain data not found. Please download the chain data according the instruction in the top-level README file before running this script.')
     burnin    <- burnin * rep(1, length(filenames))
     dfmodelpost <- do.call(rbind, mapply(function (name, B) {
 	read.table(name, header=T)[-(1:B),,drop=F]

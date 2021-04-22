@@ -40,7 +40,7 @@ for (i in 1:num_TimePeriods){
 ## Link to ZIP file (same as in the top level README):
 ##    https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/EcPaj_4NIKRKk9LWPBFOrSQBooTUe5bGY1OU7Jdq6_YYkw?e=YNdD7V
 ##
-lres_rates <- f_getRateProps(Sys.glob(file.path('../chain_data/RES_HISSE_ST6NOULTRA_QPAIR_WITHMU_2','model*.log')),
+lres_rates <- f_getRateProps(Sys.glob(file.path('..','chain_data','RES_HISSE_ST6NOULTRA_QPAIR_WITHMU_2','model*.log')),
                              mInterContinentalPaxProps,burnin=368,b_diag=FALSE,b_cfmean=FALSE)
 ## Transition rates proportions
 EmqProps<-lres_rates$EmProps ## Posterior mean
