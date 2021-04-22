@@ -41,13 +41,13 @@ for (i in 1:num_TimePeriods){
 ##    https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/EcPaj_4NIKRKk9LWPBFOrSQBooTUe5bGY1OU7Jdq6_YYkw?e=YNdD7V
 ##
 
-cfile_name<-file.path('..','chain_data','RES_HISSE_ST6NOULTRA_QPAIR_WITHMU_2','model*.log')
+cfile_name<-Sys.glob(file.path('..','chain_data','RES_HISSE_ST6NOULTRA_QPAIR_WITHMU_2','model*.log'))
 
-if (!file.exists(cfile_name)){
+if (length(cfile_name) == 0  || ! all(file.exists(cfile_name))){
     stop("Please download and extract the ZIP file containing the MCMC sample for the parameters from https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/EcPaj_4NIKRKk9LWPBFOrSQBooTUe5bGY1OU7Jdq6_YYkw?e=YNdD7V . The folders with the posterior samples are named as RES_HISSE_ST6NOULTRA_*_WITHMU_2. The folder in the script here is the one with the best found by BIC model. If you are interested in another model, then please change RES_HISSE_ST6NOULTRA_QPAIR_WITHMU_2 in the cfile_name variable to what is desired.",call.=FALSE)
 }
 
-lres_rates <- f_getRateProps(Sys.glob(cfile_name),mInterContinentalPaxProps,burnin=368,b_diag=FALSE,b_cfmean=FALSE)
+lres_rates <- f_getRateProps(cfile_name,mInterContinentalPaxProps,burnin=368,b_diag=FALSE,b_cfmean=FALSE)
 
 ## Transition rates proportions
 EmqProps<-lres_rates$EmProps ## Posterior mean
