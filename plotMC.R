@@ -145,12 +145,12 @@ dev.off()
 
 
 ##--------------- Histogram of the diversification rates
-xlim = quantile(do.call(c, as.list(merged)[sprintf('lambda_obs[%d]',1:6)]), prob=c(.001,.999))
-cairo_pdf(paste0(plotdir,"/",namestub,"-diversification-rates-hist.pdf"), width=10, height=8)
-par(mar=c(0,0,0,0))
-multi.hist(do.call(cbind, as.list(merged)[sprintf('lambda_obs[%d]',1:6)]),
-           xlim = xlim, main = c("Lambda[Africa]", "Lambda[Asia]", "Lambda[Europe]", "Lambda[N. America]", "Lambda[Oceania]", "Lambda[S. Amer]"))
-dev.off()
+#xlim = quantile(do.call(c, as.list(merged)[sprintf('lambda_obs[%d]',1:6)]), prob=c(.001,.999))
+#cairo_pdf(paste0(plotdir,"/",namestub,"-diversification-rates-hist.pdf"), width=10, height=8)
+#par(mar=c(0,0,0,0))
+#multi.hist(do.call(cbind, as.list(merged)[sprintf('lambda_obs[%d]',1:6)]),
+#           xlim = xlim, main = c("Lambda[Africa]", "Lambda[Asia]", "Lambda[Europe]", "Lambda[N. America]", "Lambda[Oceania]", "Lambda[S. Amer]"))
+#dev.off()
 
 
 ##--------------- Compute the BIC
