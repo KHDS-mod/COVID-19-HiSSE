@@ -47,7 +47,7 @@ m %>% get_tag %>% unlist %>% unique
 
 ## Numerical results (from raw file, with stochastic character maps)
 
-You can download the raw files of the MCMC chains [here](https://liuonline-my.sharepoint.com/:u:/r/personal/haoki85_liu_se/Documents/public_permanent/published_papers/hisse-covid/numerical-results.tar.xz?csf=1&web=1&e=Fa5J3H). Note that this file is much larger than the previously mentioned rmonad object because it contains all the inferred stochastic character maps.
+You can download the raw files of the MCMC chains [here](https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/ESWzGZ9IbkVMirVr1QmRQ1MBGs2Q_TtY_1EaZnLpcUrYVw?e=fndEqP). Note that this file is about 48GB, much larger than the previously mentioned rmonad object because it contains all the inferred stochastic character maps.
 
 After extracting the compressed file, this project folder should look like the following:
 
@@ -114,5 +114,5 @@ Note that when we run the experiment, we assume that RevBayes was compiled with 
 
 ## Plotting
 
-To plot the MCMC chain's trace plot and the marginal posterior, use the `plotMC.R` script. If you want to plot the estimated HiSSE states, you should run `./make_charmap.ksh` first (see the file's content for more detail).
+To plot the MCMC chain's trace plot and the marginal posterior, use the `plotMC.R` script. If you want to plot the estimated HiSSE states (the painted tree graph), you should run `./make_charmap.ksh` first (see the file's content for more detail, and you will need to change the model name in the script to get the character map that you want). The script for producing the painted tree graph is in `plot_simmap*.R`.
 
