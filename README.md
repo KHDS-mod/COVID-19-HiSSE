@@ -73,7 +73,7 @@ COVID-19-HiSSE
 ...
 </pre>
 
-Some models has a "PART1"-suffixed directory because their MCMC chains were stopped and re-started because the computation cluster that we used to run the models on has a hard-limit maximal duration for each process. These "PART1" chains should be concatenated with the chains contained in their counterpart folder that does not has the "PART1" suffix. Running the `plotMC.R` script does this concatenation as well as reproducing the [rmonad](https://cran.r-project.org/web/packages/rmonad/) object mentioned above, which is stored in a global variable called `m`.
+Some models has a "PART1"-suffixed directory because their MCMC chains were stopped and re-started because the computation cluster that we used to run the models on has a hard-limit maximal duration for each process. These "PART1" chains should be concatenated with the chains contained in their counterpart folder that does not has the "PART1" suffix. Running the `plotMC.R` script does this concatenation as well as reproducing the [rmonad](https://cran.r-project.org/web/packages/rmonad/) object mentioned above, which is stored in a global variable called `m`. Before running `plotMC.R` you must make an empty folder called `plots` in the project's root folder.
 
 # How to run the experiment
 
