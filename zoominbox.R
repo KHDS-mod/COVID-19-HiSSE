@@ -33,7 +33,7 @@ zoominbox = function (stub, boxmerged) {
                 boxplot(boxmerged, horizontal=T, las=1, pch=20, outcex=0.6, boxwex=0.4, border = NA,
                         axes=F)
                 grid(26,26)
-                title("Posterior Marginals: Model IV")
+                #title("Posterior Marginals: Model IV")
                 
                 ## Draw the actual main box plots, with a rectangle enclosing the transition rates.
                 ## rect(xleft=-0.07, ybottom=5.5, xright=0.94, ytop=36.5, lty=2)
@@ -96,7 +96,7 @@ zoominbox = function (stub, boxmerged) {
                 boxplot(boxmerged, horizontal=T, las=1, pch=20, outcex=0.6, boxwex=0.4, border = NA,
                         axes=F)
                 grid(26,26)
-                title("Posterior Marginals: Model II")
+                #title("Posterior Marginals: Model II")
                 
                 ## Draw the actual main boxes.
                 rect(xleft=-0.07, ybottom=10.5, xright=0.37, ytop=26, lty=3)

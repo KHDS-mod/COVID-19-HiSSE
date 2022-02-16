@@ -5,7 +5,7 @@ This repository contains code for fitting hidden state multistate speciation and
 
 ## Reading the source files
 
-If you are a statistician and you are only interested in reading the code for the actual model, please see the six `*.rb` files for the HiSSE model. They are RevBayes model files (similar to Stan, JAGS files) which contains the formulas for the prior and likelihood. The `mpp-*.ksh` scripts are used for submitting the RevBayes programs to a Slurm job queue for high-performance computation; you don't need them if you don't use Slurm workload manager. `run_me_to_plot_MCMC.ksh` is a simple ksh script which calls `plotMC.R` with the correct file names, so you may want to read the latter to see how graphs are plotted. `plotMC.R` also sources some other .R files which does the actual graph plotting and computes the BIC of each models. For the MuSSE model, which does not converge, please see `musse-mle-withmu.R`, which fits the MuSSE model with conjugate gradient optimisation. 
+If you are a statistician and you are only interested in reading the code for the actual model, please see the six `*.rb` files for the HiSSE model. They are RevBayes model files (similar to Stan, JAGS files) which contains the formulas for the prior and likelihood. The `mpp-*.ksh` scripts are used for submitting the RevBayes programs to a Slurm job queue for high-performance computation; you don't need them if you don't use Slurm workload manager. `plotMC.R` can be sourced into R to produce graphs about the MCMC. The script also sources some other .R files which does the actual graph plotting and computes the BIC of each models. For the MuSSE model, which does not converge, please see `musse-mle-withmu.R`, which fits the MuSSE model with conjugate gradient optimisation. 
 
 
 ## Data Preprocessing
@@ -17,10 +17,37 @@ The following pre-processing steps are done to the phylogeny:
 3. `ape::multi2di` produces dichotomies with some length-zero branches. We replace zero length with 1 hour.
 4. Use `ape::collapse.singles` to resolve internal nodes with a single descendant.
 
+## Numerical results (directly loadable into R, without stochastic character maps)
 
-## Numerical results
+The easiest way to get the MCMC chain loaded into R is to download [this ".rds" file](https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/Ebr3IuVEmT1IsDW5L3KmGeoB92tSmHirTK3ixUYU2oAJCQ), which contains all the chains of all the models, including both the burn-in-trimmed version and the raw version, in a single R object. This R object also contains all the steps and code
+that was used to read in, trim and postprocess the MCMC chains. You will need the R package [rmonad](https://cran.r-project.org/web/packages/rmonad/) (0.7.0 was used) to manipulate the object.
 
-The MCMC chain data and RevBayes logs can be downloaded [here](https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/EcPaj_4NIKRKk9LWPBFOrSQBooTUe5bGY1OU7Jdq6_YYkw?e=YNdD7V).
+Use the following to commands in R to get the chains of, for example, the full model with informative prior:
+
+```
+library(rmonad)
+library(magrittr)
+
+m = readRDS('numerical_result_monad.rds')
+chns = view(m, 'MCMCchains:full-prior3') %>% esc
+```
+
+The burn-in-trimmed counterpart can be obtained with
+
+```
+chns_trimmed = view(m, 'MCMCchains_trimmed:full-withmu') %>% esc
+```
+
+You can get all tags and explore the [rmonad](https://cran.r-project.org/web/packages/rmonad/) object by using this command:
+
+```
+m %>% get_tag %>% unlist %>% unique
+```
+
+
+## Numerical results (from raw file, with stochastic character maps)
+
+You can download the raw files of the MCMC chains [here](https://liuonline-my.sharepoint.com/:u:/r/personal/haoki85_liu_se/Documents/public_permanent/published_papers/hisse-covid/numerical-results.tar.xz?csf=1&web=1&e=Fa5J3H). Note that this file is much larger than the previously mentioned rmonad object because it contains all the inferred stochastic character maps.
 
 After extracting the compressed file, this project folder should look like the following:
 
@@ -46,6 +73,7 @@ COVID-19-HiSSE
 ...
 </pre>
 
+Some models has a "PART1"-suffixed directory because their MCMC chains were stopped and re-started because the computation cluster that we used to run the models on has a hard-limit maximal duration for each process. These "PART1" chains should be concatenated with the chains contained in their counterpart folder that does not has the "PART1" suffix. Running the `plotMC.R` script does this concatenation as well as reproducing the [rmonad](https://cran.r-project.org/web/packages/rmonad/) object mentioned above, which is stored in a global variable called `m`.
 
 # How to run the experiment
 
@@ -86,7 +114,5 @@ Note that when we run the experiment, we assume that RevBayes was compiled with 
 
 ## Plotting
 
-To plot the MCMC chain's trace plot and the marginal posterior, use the `run_me_to_plot_MCMC.ksh`. The script plots the graphs by simply
-running a for-loop which evokes `./plotMC.R` with the correct directory name. If you want to plot the estimated HiSSE states, you should
-run `./make_charmap.ksh` first (see the file for more detail).
+To plot the MCMC chain's trace plot and the marginal posterior, use the `plotMC.R` script. If you want to plot the estimated HiSSE states, you should run `./make_charmap.ksh` first (see the file's content for more detail).
 
