@@ -19,8 +19,8 @@ The following pre-processing steps are done to the phylogeny:
 
 ## Numerical results (directly loadable into R, without stochastic character maps)
 
-The easiest way to get the MCMC chain loaded into R is to download [this ".rds" file](https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/Ebr3IuVEmT1IsDW5L3KmGeoB92tSmHirTK3ixUYU2oAJCQ), which contains all the chains of all the models, including both the burn-in-trimmed version and the raw version, in a single R object. This R object also contains all the steps and code
-that was used to read in, trim and postprocess the MCMC chains. You will need the R package [rmonad](https://cran.r-project.org/web/packages/rmonad/) (0.7.0 was used) to manipulate the object.
+The easiest way to get the MCMC chain loaded into R is to download [this ".rds" file](https://github.com/KHDS-mod/COVID-19-HiSSE/blob/4a3a9fb9cef5998f333c1014d0237ff5f3784d50/numerical_result_monad.rds.lrz), which contains all the chains of all the models, including both the burn-in-trimmed version and the raw version, in a single R object. This R object also contains all the steps and code
+that was used to read in, trim and postprocess the MCMC chains. See [here](https://github.com/KHDS-mod/COVID-19-HiSSE/tree/rmonadRDS) for how to decompress a `.lrz` file format. You will need the R package [rmonad](https://cran.r-project.org/web/packages/rmonad/) (0.7.0 was used) to manipulate the object.
 
 Use the following to commands in R to get the chains of, for example, the full model with informative prior:
 
@@ -47,7 +47,7 @@ m %>% get_tag %>% unlist %>% unique
 
 ## Numerical results (from raw file, with stochastic character maps)
 
-You can download the raw files of the MCMC chains [here](https://liuonline-my.sharepoint.com/:u:/g/personal/haoki85_liu_se/ESWzGZ9IbkVMirVr1QmRQ1MBGs2Q_TtY_1EaZnLpcUrYVw?e=fndEqP). Note that this file is about 48GB, much larger than the previously mentioned rmonad object because it contains all the inferred stochastic character maps.
+You can download the raw files of the MCMC chains [here](http://urn.kb.se/resolve?urn=urn%3Anbn%3Ase%3Aliu%3Adiva-185867). Note that this file is about 48GB, much larger than the previously mentioned rmonad object because it contains all the inferred stochastic character maps.
 
 After extracting the compressed file, this project folder should look like the following:
 
